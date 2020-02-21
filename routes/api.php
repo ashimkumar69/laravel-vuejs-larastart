@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,14 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::apiResources(['/user' => 'API\UserController',]);
+Route::get('/profile', 'API\UserController@profile');
+Route::patch('/profile', 'API\UserController@updateProfile');
+Route::get('/search', 'API\UserController@search');
+
+Route::get('/invoice', function () {
+    return view('invoice');
 });
